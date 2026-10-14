@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=DOMScout - Copy Script
+Comment=Copy domscout.js to the clipboard
+Terminal=true
+Exec=/bin/sh -c "cd \"$(dirname \"$1\")/..\" || exit 1; if [ ! -f domscout.js ]; then echo 'Could not find domscout.js in the project root.'; read -r _; exit 1; fi; if [ -n \"$WAYLAND_DISPLAY\" ] && command -v wl-copy >/dev/null 2>&1; then wl-copy < domscout.js; elif command -v xclip >/dev/null 2>&1; then xclip -selection clipboard < domscout.js; elif command -v xsel >/dev/null 2>&1; then xsel --clipboard --input < domscout.js; else echo 'Install wl-clipboard (Wayland), xclip, or xsel (X11).'; read -r _; exit 1; fi; echo 'DOMScout script copied to clipboard.'" sh %k
+Categories=Development;
